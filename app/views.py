@@ -120,8 +120,8 @@ def delete_bb(request, pk):
     return Http404()
 
 
-from django.views.generic import CreateView
-from django.views.generic.base import TemplateView
+from django.views.generic import *
+from django.views.generic.base import *
 
 
 class BbCreateView(CreateView):
@@ -160,3 +160,14 @@ class RubricDetailView(View):
 class BbDetailView(DetailView):
     model = Bb
     template_name = 'detail_bb.html'
+
+
+class BbListView(ListView):
+    model = Bb
+    template_name = "index.html"
+    context_object_name = "bbs"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["rubrics"] = Rubric.objects.all()
+        return context

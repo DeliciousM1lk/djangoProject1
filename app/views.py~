@@ -4,7 +4,6 @@ from django.urls import reverse
 from django.views.decorators.http import *
 from django.views.generic.detail import DetailView
 
-
 from .models import *
 from .form import *
 
@@ -143,6 +142,8 @@ class BbRubricTemplateView(TemplateView):
 
 
 from django.views import View
+
+
 class RubricDetailView(View):
     def get(self, request, rubric_id):
         current_rubric = get_object_or_404(Rubric, pk=rubric_id)
@@ -154,6 +155,7 @@ class RubricDetailView(View):
             "rubrics": rubrics
         }
         return render(request, 'by_rubric_class.html', context)
+
 
 class BbDetailView(DetailView):
     model = Bb

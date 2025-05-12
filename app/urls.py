@@ -20,7 +20,8 @@ urlpatterns = [
     path('update/<int:pk>/bb/',update_bb,name='update_bb'),
     path('delete/<int:pk>/bb/',delete_bb,name='delete_bb'),
 #   Class Views
-    path('create/class/',BbCreateView.as_view(),name='create_class'),
+    path('create/class/',BbCreateView.as_view(),name='create'),
     path('by_rubric/class/<int:rubric_id>/',BbRubricTemplateView.as_view(),name='by_rubric'),
-
+    path('rubric_detail/class/<int:rubric_id>/',RubricDetailView.as_view(),name='rubric_detail'),
+    path('bb_detail/class/<int:pk>/',BbDetailView.as_view(),name='bb_detail'),
 ]

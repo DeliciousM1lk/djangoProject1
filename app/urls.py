@@ -24,5 +24,7 @@ urlpatterns = [
     path('by_rubric/class/<int:rubric_id>/', BbRubricTemplateView.as_view(), name='by_rubric'),
     path('rubric_detail/class/<int:rubric_id>/', RubricDetailView.as_view(), name='rubric_detail'),
     path('bb_detail/class/<int:pk>/', BbDetailView.as_view(), name='bb_detail'),
-    path('all/class/', BbListView.as_view(), name='all_class')
+    path('all/class/', BbListView.as_view(), name='all_class'),
+    path('update/bb/class/<int:pk>/', BbUpdateView.as_view(), name='bb_update'),
+    path('delete/bb/class/<int:pk>/', BbDeleteView.as_view(), name='bb_delete'),
 ]

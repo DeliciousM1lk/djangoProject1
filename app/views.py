@@ -1,6 +1,6 @@
 from django.http import *
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import *
 from django.views.generic.detail import DetailView
 
@@ -171,3 +171,17 @@ class BbListView(ListView):
         context = super().get_context_data(**kwargs)
         context["rubrics"] = Rubric.objects.all()
         return context
+
+
+class BbUpdateView(UpdateView):
+    model = Bb
+    fields = ['rubric', 'title', 'content', 'price']
+    success_url = "app/all/class/"
+    template_name = 'add_bb.html'
+
+
+class BbDeleteView(DeleteView):
+    model = Bb
+    success_url = "app/all/class/"
+    template_name = 'delete_bb.html'
+    context_object_name = "bb"

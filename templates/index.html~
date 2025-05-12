@@ -91,6 +91,7 @@
 <p><a href="{{ rub.get_absolute_url }}">{{ rub.name }}</a></p>
 {% endfor %}
 
+<h1>Hello World</h1>
 
 {% for b in bbs %}
     <h2><a href="{{ b.get_absolute_url }}">{{ b.title }}</a> — {{ b.price }}</a></h2>

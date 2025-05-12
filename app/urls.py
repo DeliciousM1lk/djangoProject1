@@ -21,6 +21,6 @@ urlpatterns = [
     path('delete/<int:pk>/bb/',delete_bb,name='delete_bb'),
 #   Class Views
     path('create/class/',BbCreateView.as_view(),name='create_class'),
-    path('by_rubric/class/<int:pk>/',BbRubricTemplateView.as_view(),name='by_rubric'),
+    path('by_rubric/class/<int:rubric_id>/',BbRubricTemplateView.as_view(),name='by_rubric'),
 
 ]

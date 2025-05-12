@@ -2,6 +2,8 @@ from django.http import *
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import *
+from django.views.generic.detail import DetailView
+
 
 from .models import *
 from .form import *
@@ -66,7 +68,7 @@ def stream(request):
 
 @require_GET
 def file_response(request):
-    file_path = r"C:\Users\winge\PycharmProjects\djangoProject1\project\static\picture.jpg"
+    file_path = r"C:\Users\DeliciousMilk\desktop\python\Django\djangoProject1\project\static\picture.jpg"
     return FileResponse(open(file_path, 'rb'), content_type='image/jpg', as_attachment=True)
 
 
@@ -144,5 +146,15 @@ from django.views import View
 class RubricDetailView(View):
     def get(self, request, rubric_id):
         current_rubric = get_object_or_404(Rubric, pk=rubric_id)
-        bbs = Bb.objects.filter(rubric=rubric)
-        return
+        bbs = Bb.objects.filter(rubric=current_rubric)
+        rubrics = Rubric.objects.all()
+        context = {
+            "current_rubric": current_rubric,
+            "bbs": bbs,
+            "rubrics": rubrics
+        }
+        return render(request, 'by_rubric_class.html', context)
+
+class BbDetailView(DetailView):
+    model = Bb
+    template_name = 'detail_bb.html'

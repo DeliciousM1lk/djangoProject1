@@ -2,6 +2,7 @@ from django.http import *
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.views.decorators.http import *
+from django.views.generic.detail import DetailView
 
 from .models import *
 from .form import *
@@ -141,10 +142,12 @@ class BbRubricTemplateView(TemplateView):
 
 
 from django.views import View
+
+
 class RubricDetailView(View):
     def get(self, request, rubric_id):
         current_rubric = get_object_or_404(Rubric, pk=rubric_id)
-        bbs = Bb.objects.filter(rubric=rubric)
+        bbs = Bb.objects.filter(rubric=current_rubric)
         rubrics = Rubric.objects.all()
         context = {
             "current_rubric": current_rubric,
@@ -153,6 +156,7 @@ class RubricDetailView(View):
         }
         return render(request, 'by_rubric_class.html', context)
 
-class BbDetailView(View):
+
+class BbDetailView(DetailView):
     model = Bb
     template_name = 'detail_bb.html'

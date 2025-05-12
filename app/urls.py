@@ -19,5 +19,8 @@ urlpatterns = [
     path('json/',json_response,name='json'),
     path('update/<int:pk>/bb/',update_bb,name='update_bb'),
     path('delete/<int:pk>/bb/',delete_bb,name='delete_bb'),
+#   Class Views
+    path('create/class/',BbCreateView.as_view(),name='create_class'),
+    path('by_rubric/class/<int:pk>/',BbRubricTemplateView.as_view(),name='by_rubric'),
 
 ]

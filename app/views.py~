@@ -125,5 +125,4 @@ class BbRubricTemplateView(TemplateView):
         context["bbs"] = Bb.objects.filter(rubric = context["rubric_id"])
         context["rubrics"] = Rubric.objects.all()
         context["current_rubric"] = Rubric.objects.get(pk=context["rubric_id"])
-        return context
 

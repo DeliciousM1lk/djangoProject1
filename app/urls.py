@@ -36,4 +36,5 @@ urlpatterns = [
     path('archive/today/', BbTodayArchiveView.as_view(), name='archive_today'),
     path('redirect/', BbRedirectView.as_view(), name='redirect'),
     path('merge/<int:rubric_id>/', MergeBbRubricView.as_view(), name='merge'),
+    path('contact/', ContactFormView.as_view(), name='contact'),
 ]

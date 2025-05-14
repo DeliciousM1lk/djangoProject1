@@ -259,3 +259,13 @@ class MergeBbRubricView(SingleObjectMixin, ListView):
 
     def get_queryset(self):
         return self.object.bb_set.all()
+
+
+class ContactFormView(FormView):
+    form_class = ContactForm
+    template_name = "contact.html"
+    success_url = reverse_lazy("app:all_class")
+
+    def form_valid(self, form):
+        print("Полученные данные: ", form.cleaned_data)
+        return super().form_valid(form)

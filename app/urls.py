@@ -27,6 +27,13 @@ urlpatterns = [
     path('all/class/', BbListView.as_view(), name='all_class'),
     path('update/bb/class/<int:pk>/', BbUpdateView.as_view(), name='bb_update'),
     path('delete/bb/class/<int:pk>/', BbDeleteView.as_view(), name='bb_delete'),
-#     date
+    #     date
     path('archive/', BbIndexArchiveView.as_view(), name='archive'),
+    path('archive/<int:year>/', BbYearArchiveView.as_view(), name='archive_year'),
+    path('archive/<int:year>/<int:month>/', BbMonthArchiveView.as_view(), name='archive_month'),
+    path('archive/<int:year>/week/<int:week>/', BbWeekArchiveView.as_view(), name='archive_week'),
+    path('archive/<int:year>/<int:month>/<int:day>/', BbDayArchiveView.as_view(), name='archive_day'),
+    path('archive/today/', BbTodayArchiveView.as_view(), name='archive_today'),
+    path('redirect/', BbRedirectView.as_view(), name='redirect'),
+    path('merge/<int:rubric_id>/', MergeBbRubricView.as_view(), name='merge'),
 ]

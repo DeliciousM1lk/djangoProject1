@@ -2,7 +2,7 @@ from django.http import *
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.http import *
-from django.views.generic.detail import DetailView
+from django.views.generic.detail import DetailView, SingleObjectMixin
 
 from .models import *
 from .form import *
@@ -186,8 +186,76 @@ class BbDeleteView(DeleteView):
     template_name = 'delete_bb.html'
     context_object_name = "bb"
 
+
 class BbIndexArchiveView(ArchiveIndexView):
     model = Bb
     date_field = "published"
     template_name = "date.html"
     context_object_name = "latest"
+
+
+class BbYearArchiveView(YearArchiveView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"
+    make_object_list = True
+
+
+class BbMonthArchiveView(MonthArchiveView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"
+    make_object_list = True
+    month_format = "%m"
+
+
+class BbWeekArchiveView(WeekArchiveView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"
+    make_object_list = True
+    weekday_format = "%W"
+
+
+class BbDayArchiveView(DayArchiveView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"
+    make_object_list = True
+    month_format = "%m"
+
+
+class BbTodayArchiveView(TodayArchiveView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"
+    make_object_list = True
+
+
+class BbRedirectView(RedirectView):
+    url = reverse_lazy("app:all_class")
+    permanent = True
+
+
+class MergeBbRubricView(SingleObjectMixin, ListView):
+    template_name = "by_rubric_class.html"
+    pk_url_kwarg = "rubric_id"
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object(queryset=Rubric.objects.all())
+        return super().get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["rubrics"] = Rubric.objects.all()
+        context["current_rubric"] = self.object
+        context["bbs"] = context["object_list"]
+        return context
+
+    def get_queryset(self):
+        return self.object.bb_set.all()

@@ -185,3 +185,9 @@ class BbDeleteView(DeleteView):
     success_url = "app/all/class/"
     template_name = 'delete_bb.html'
     context_object_name = "bb"
+
+class BbIndexArchiveView(ArchiveIndexView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"
+    context_object_name = "latest"

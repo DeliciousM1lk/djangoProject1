@@ -27,4 +27,6 @@ urlpatterns = [
     path('all/class/', BbListView.as_view(), name='all_class'),
     path('update/bb/class/<int:pk>/', BbUpdateView.as_view(), name='bb_update'),
     path('delete/bb/class/<int:pk>/', BbDeleteView.as_view(), name='bb_delete'),
+#     date
+    path('archive/', BbIndexArchiveView.as_view(), name='archive'),
 ]

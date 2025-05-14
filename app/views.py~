@@ -172,14 +172,21 @@ class BbListView(ListView):
         context["rubrics"] = Rubric.objects.all()
         return context
 
+
 class BbUpdateView(UpdateView):
     model = Bb
     fields = ['rubric', 'title', 'content', 'price']
     success_url = "app/all/class/"
     template_name = 'add_bb.html'
 
+
 class BbDeleteView(DeleteView):
     model = Bb
     success_url = "app/all/class/"
     template_name = 'delete_bb.html'
     context_object_name = "bb"
+
+class BbIndexArchiveView(ArchiveIndexView):
+    model = Bb
+    date_field = "published"
+    template_name = "date.html"

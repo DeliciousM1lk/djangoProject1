@@ -120,11 +120,11 @@
     </style>
 </head>
 <body>
-    <form class="form-card" method="post">
-        <h1>Contact form</h1>
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Отправить">
-    </form>
+<form class="form-card" method="post">
+    <h1>Contact form</h1>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Отправить">
+</form>
 </body>
 </html>

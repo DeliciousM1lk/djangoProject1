@@ -37,4 +37,6 @@ urlpatterns = [
     path('redirect/', BbRedirectView.as_view(), name='redirect'),
     path('merge/<int:rubric_id>/', MergeBbRubricView.as_view(), name='merge'),
     path('contact/', ContactFormView.as_view(), name='contact'),
+    path('rubric/create/', create_rubric, name='create_rubric'),
+    path('rubric/success/', TemplateView.as_view(template_name='success.html'), name='rubric_success'),
 ]

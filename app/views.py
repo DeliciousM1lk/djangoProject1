@@ -269,3 +269,14 @@ class ContactFormView(FormView):
     def form_valid(self, form):
         print("Полученные данные: ", form.cleaned_data)
         return super().form_valid(form)
+
+
+def create_rubric(request):
+    if request.method == 'POST':
+        form = RubricForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('app:rubric_success')
+    else:
+        form = RubricForm()
+    return render(request, 'create_rubric.html', {'form': form})

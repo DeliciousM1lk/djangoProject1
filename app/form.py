@@ -8,6 +8,12 @@ class BbForm(ModelForm):
         fields = ['rubric', 'title', 'content', 'price']
 
 
+class RubricForm(ModelForm):
+    class Meta:
+        model = Rubric
+        fields = ['name']
+
+
 class ContactForm(forms.Form):
     name = CharField(label='Имя', max_length=30)
     email = EmailField(label='Email')

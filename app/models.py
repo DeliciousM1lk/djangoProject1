@@ -125,5 +125,5 @@ class Machine(models.Model):
 # UUIDField
 # ImageField
 # FileField
-# IntergerField
+# IntegerField
 # PositiveIntegerField

@@ -39,4 +39,6 @@ urlpatterns = [
     path('contact/', ContactFormView.as_view(), name='contact'),
     path('rubric/create/', create_rubric, name='create_rubric'),
     path('rubric/success/', TemplateView.as_view(template_name='success.html'), name='rubric_success'),
+    path('rubric/detail/<int:pk>/', rubric_detail_json, name='rubric_detail_json'),
+    path('download/example/', download_example_file, name='download_example_file'),
 ]

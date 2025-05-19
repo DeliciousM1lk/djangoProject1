@@ -294,11 +294,3 @@ def rubric_detail_json(request, pk):
         'name': rubric.name,
     }
     return JsonResponse(data)
-
-
-def download_example_file(request):
-    file_path = 'example.txt'
-    if os.path.exists(file_path):
-        return FileResponse(open(file_path, 'rb'), as_attachment=True)
-    else:
-        raise Http404("File not found")
